@@ -1,9 +1,12 @@
+com/springframework/repositories/BookRepository.class
 com/springframework/WebSecurityConfig$1.class
 com/springframework/WebSecurityConfig.class
 com/springframework/services/MyUserDetailsService.class
 com/springframework/MvcWebApplicationInitializer.class
 com/springframework/AppConfig.class
+com/springframework/services/BookService.class
 com/springframework/domain/MyUser.class
+com/springframework/domain/Book.class
 com/springframework/controllers/ProductController.class
 com/springframework/repositories/MyUserRepository.class
 com/springframework/SpringBootPostgreSQLApplication.class

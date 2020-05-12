@@ -1,11 +1,14 @@
 package com.springframework.controllers;
 
 
+import com.springframework.domain.Book;
 import com.springframework.domain.MyUser;
 import com.springframework.repositories.MyUserRepository;
+import com.springframework.services.BookService;
 import com.springframework.services.MyUserService;
 import com.springframework.services.MyUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,11 +27,15 @@ public class ProductController {
     @Autowired
     MyUserRepository userRepository;
     private MyUserService userService;
+    private BookService bookService;
 
     @Autowired
     public void setMyUserService(MyUserService userService){
         this.userService = userService;
     }
+
+    @Autowired
+    public void setBookService(BookService bookService){ this.bookService = bookService;}
 
     @GetMapping("/signup")
     public String sendForm(MyUser person){
@@ -61,16 +68,35 @@ public class ProductController {
         return "login";
     }
     @RequestMapping("/homepage")
-    public String home(HttpSession session){
+    public String home(HttpSession session, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = ((UserDetails)authentication.getPrincipal()).getUsername();
         System.out.println(" =================" + username);
         session.setAttribute("username",username);
+        List<Book> bookList = bookService.listAll();
+        model.addAttribute("books",bookList);
         return "homepage";
     }
     @RequestMapping("/")
-    public String index(MyUser person) {
+    public String index() {
+        userService.saveMyUser("Abhishek","abhiyad","123","USER");
+        bookService.saveBook("A1",1,"B1");
+        bookService.saveBook("A2",3,"B2");
+        bookService.saveBook("A3",2,"B3");
+        bookService.saveBook("A4",5,"B4");
+        bookService.saveBook("A5",3,"B5");
+        Book a = bookService.findByBookName("A2");
+        System.out.println("copies ===== " + a.getCopies());
+        System.out.println(bookService.listAll().toString());
         return "index";
+    }
+
+    @PostMapping("/issue/{name}")
+    public String issue(@PathVariable String name){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = ((UserDetails)authentication.getPrincipal()).getUsername();
+        System.out.println("USER : " + username + " ==== BOOK Name :" + name);
+        return "redirect:/homepage";
     }
 
 }

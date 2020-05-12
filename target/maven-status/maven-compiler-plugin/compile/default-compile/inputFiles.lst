@@ -1,10 +1,13 @@
 /home/abhishek/projects/library/src/main/java/com/springframework/services/MyUserService.java
 /home/abhishek/projects/library/src/main/java/com/springframework/SecurityWebApplicationInitializer.java
 /home/abhishek/projects/library/src/main/java/com/springframework/controllers/ProductController.java
-/home/abhishek/projects/library/src/main/java/com/springframework/repositories/MyUserRepository.java
 /home/abhishek/projects/library/src/main/java/com/springframework/SpringBootPostgreSQLApplication.java
-/home/abhishek/projects/library/src/main/java/com/springframework/domain/MyUser.java
 /home/abhishek/projects/library/src/main/java/com/springframework/WebSecurityConfig.java
+/home/abhishek/projects/library/src/main/java/com/springframework/repositories/BookRepository.java
 /home/abhishek/projects/library/src/main/java/com/springframework/MvcWebApplicationInitializer.java
+/home/abhishek/projects/library/src/main/java/com/springframework/services/BookService.java
+/home/abhishek/projects/library/src/main/java/com/springframework/domain/Book.java
+/home/abhishek/projects/library/src/main/java/com/springframework/repositories/MyUserRepository.java
+/home/abhishek/projects/library/src/main/java/com/springframework/domain/MyUser.java
 /home/abhishek/projects/library/src/main/java/com/springframework/AppConfig.java
 /home/abhishek/projects/library/src/main/java/com/springframework/services/MyUserDetailsService.java

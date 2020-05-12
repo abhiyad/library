@@ -8,6 +8,33 @@
 THIS IS YOUR HOMEpaGE USEr
 <p th:text="${session.username}" th:unless="${session == null}">[...]</p>
 <br>
+
+
+<table>
+    <thead>
+    <tr>
+        <th> Title </th>
+        <th> Author </th>
+        <th> Copies </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${books.empty}">
+        <td colspan="2"> No Books Available </td>
+    </tr>
+    <tr th:each="book : ${books}">
+        <td><span th:text="${book.name}"> Title </span></td>
+        <td><span th:text="${book.author}"> Author </span></td>
+        <td><span th:text="${book.copies}"> Author </span></td>
+<!--        <td><a th:href="@{'/issue/' + ${book.name}}">issue</a></td>-->
+        <td><form th:action="@{'/issue/' + ${book.name}}" method="post"><button type="submit" name="your_name" value="your_value" class="btn-link">Go</button></form></td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+<br>
 <a href="/logout">LOGOUT</a>
 </body>
 </html>
