@@ -26,4 +26,10 @@ public class BookService {
     public Book findByBookName(String name){
         return repository.findBookByName(name);
     }
+    public void issue(String name){
+        repository.issue(name);
+    }
+    public void return_book(String name){
+        repository.return_book(name);
+    }
 }

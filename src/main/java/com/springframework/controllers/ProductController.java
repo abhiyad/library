@@ -95,8 +95,25 @@ public class ProductController {
     public String issue(@PathVariable String name){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = ((UserDetails)authentication.getPrincipal()).getUsername();
-        System.out.println("USER : " + username + " ==== BOOK Name :" + name);
+        MyUser user = userService.loadUserByUsername(username);
+        Book book = bookService.findByBookName(name);
+        if (user.getIssued_book()==null && book.getCopies()>0) {
+            userService.issue(username, name);
+            bookService.issue(name);
+        }
+        else
+            System.out.println("ALREADY HAS A BOOK ISSUED UNDER HIS NAME " + user.getIssued_book());
         return "redirect:/homepage";
+    }
+    @GetMapping("/return_book")
+    public String return_book(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = ((UserDetails)authentication.getPrincipal()).getUsername();
+        MyUser user = userService.loadUserByUsername(username);
+        String book_name = user.getIssued_book();
+        userService.return_book(username);
+        bookService.return_book(book_name);
+        return  "redirect:/homepage";
     }
 
 }

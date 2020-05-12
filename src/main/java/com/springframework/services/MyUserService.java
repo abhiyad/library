@@ -31,4 +31,10 @@ public class MyUserService {
         System.out.println("saved password ============== " + user.getPassword());
         repository.save(user);
     }
+    public void issue(String username,String book_name){
+        repository.issue(username,book_name);
+    }
+    public void return_book(String username){
+        repository.return_book(username);
+    }
 }
