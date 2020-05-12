@@ -96,13 +96,17 @@ public class ProductController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = ((UserDetails)authentication.getPrincipal()).getUsername();
         MyUser user = userService.loadUserByUsername(username);
+        Book book1 =  bookService.findByBookName("ABHI");
+        if (book1==null)System.out.println("WILL WORK THIS LOGI");
         Book book = bookService.findByBookName(name);
-        if (user.getIssued_book()==null && book.getCopies()>0) {
+        if (book!=null && user.getIssued_book()==null && book.getCopies()>0) {
             userService.issue(username, name);
             bookService.issue(name);
         }
-        else
-            System.out.println("ALREADY HAS A BOOK ISSUED UNDER HIS NAME " + user.getIssued_book());
+        else {
+            System.out.println("ERROR ::::: 1) alread has a book 2) Book not available");
+            return "redirect:/homepage?error";
+        }
         return "redirect:/homepage";
     }
     @GetMapping("/return_book")

@@ -33,6 +33,12 @@ THIS IS YOUR HOMEpaGE USEr
 </table>
 
 <br>
+<div align="center" th:if="${param.error}">
+    <p style="font-size: 20; color: #FF1C19;">UNABLE TO PROCESS REQUEST</p>
+    <p style="font-size: 20; color: #FF1C19;">EITHER YOU HAVE BOOK ISSUED UNDER YOU NAME ALREADY OR </p>
+    <p style="font-size: 20; color: #FF1C19;">BOOK IS NOT AVAILABLE</p>
+</div>
+<br>
 <a href="/return_book">RETURN BOOK</a>
 
 <br>
